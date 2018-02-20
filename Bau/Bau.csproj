@@ -37,8 +37,4 @@
     <Exec Command="ng build" />
   </Target>
 
-  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
-    <Exec Command="gulp&#xD;&#xA;ng build" />
-  </Target>
-
 </Project>
