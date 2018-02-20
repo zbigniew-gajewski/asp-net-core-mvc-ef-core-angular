@@ -14,5 +14,5 @@ Bau/Properties/PublishProfiles
 /.vs
 /packages
 Bau/node_modules
-Bau\wwwroot\lib
+Bau/wwwroot/lib
 
