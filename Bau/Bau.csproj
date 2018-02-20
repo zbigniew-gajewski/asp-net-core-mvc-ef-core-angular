@@ -5,13 +5,6 @@
     <TypeScriptToolsVersion>2.5</TypeScriptToolsVersion>
     <!--<RuntimeIdentifier>win10-x64</RuntimeIdentifier>-->
   </PropertyGroup>
-
-  <ItemGroup>
-    <Compile Remove="wwwroot\ts\**" />
-    <Content Remove="wwwroot\ts\**" />
-    <EmbeddedResource Remove="wwwroot\ts\**" />
-    <None Remove="wwwroot\ts\**" />
-  </ItemGroup>
   
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="6.2.2" />
@@ -34,6 +27,7 @@
 
   <ItemGroup>
     <Folder Include="wwwroot\lib\" />
+    <Folder Include="wwwroot\ts\" />
   </ItemGroup>
 
   <Target Name="MyPublishScripts" BeforeTargets="BeforePublish">
@@ -41,6 +35,10 @@
     <Exec Command="bower install" />
     <Exec Command="gulp" />
     <Exec Command="ng build" />
+  </Target>
+
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="gulp&#xD;&#xA;ng build" />
   </Target>
 
 </Project>

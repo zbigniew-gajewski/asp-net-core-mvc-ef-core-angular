@@ -15,4 +15,6 @@ Bau/Properties/PublishProfiles
 /packages
 Bau/node_modules
 Bau/wwwroot/lib
+Bau/wwwroot/ClientApp
+Bau/wwwroot/dist
 
