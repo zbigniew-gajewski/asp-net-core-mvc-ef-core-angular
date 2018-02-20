@@ -1,0 +1,18 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+Bau/obj
+Bau/bin
+Bau.Data/obj
+Bau.Data/bin
+Bau.Planning/obj
+Bau.Planning/bin
+
+Bau/Properties/PublishProfiles
+
+/.vs
+/packages
+Bau/node_modules
+Bau/node_modules
+

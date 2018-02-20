@@ -1,0 +1,70 @@
+﻿<!--https://codepen.io/rubenh/pen/OVmGMP-->
+<div class="container" style="height: 100%">
+
+    <div class="row" style="margin-bottom: 30px;">
+        <div class="container">
+            <div class="col-md-12">
+                <h2>{{title}}</h2>
+            </div>
+        </div>
+    </div>
+
+    <div class="row" style="height:100%;">
+
+        <div class="container">
+
+            <div class="col-md-3" *ngIf="data.isLoginRequired == false">
+                <div *ngFor="let e of this.data.engineers">
+                    <button class="btn btn-link" style="height:25px; text-align:left;" (click)="selectEngineer(e)"><div>{{ e.firstName }} <strong>{{ e.lastName }}</strong> </div></button>
+                </div>
+            </div>
+
+            <div class="col-md-8 col-md-offset-1" *ngIf="data.isLoginRequired == false">
+                <div style="margin-bottom: 10px; font-size: 24px; color: green"><strong>{{ selectedEngineer.firstName }} {{selectedEngineer.lastName}}</strong></div>
+
+                <table style="width:100%; margin-bottom: 5px;">
+                    <tr>
+                        <th style="text-align: left; width: 40%;">Date</th>
+                        <th style="text-align: left; width: 30%;">Morning</th>
+                        <th style="text-align: left; width: 30%;">Afternoon</th>
+                    </tr>
+                </table>
+
+                <div class="pre-scrollable">
+                    <table style="border: solid; border-width: thin; border-radius: 3px; border-color: gray; padding: 5px; width:100%">
+                        <tr *ngFor="let pi of data.planItems">
+                            <td style="width: 40%">
+                                <div style="background-color: darkgray; margin: 2px; padding: 3px;"><strong> {{ pi.date }}</strong> </div>
+                            </td>
+                            <td style="width: 30%;">
+                                <div *ngIf="pi.morningEngineer.id != 0 && pi.morningEngineer.id == selectedEngineer.id" style="background-color: mintcream; color: green; margin: 2px; padding: 3px;"><strong>{{ pi.morningEngineer.firstName }} {{ pi.morningEngineer.lastName }}</strong></div>
+                                <div *ngIf="pi.morningEngineer.id != 0 && pi.morningEngineer.id != selectedEngineer.id" style="background-color: lightgray; margin: 2px; padding: 3px;"><strong>{{ pi.morningEngineer.firstName }} {{ pi.morningEngineer.lastName }}</strong></div>
+                            </td>
+                            <td style="width: 30%">
+                                <div *ngIf="pi.afternoonEngineer.id != 0 && pi.afternoonEngineer.id == selectedEngineer.id" style="background-color: mintcream; color: green; margin: 2px; padding: 3px;"><strong>{{ pi.afternoonEngineer.firstName }} {{ pi.afternoonEngineer.lastName }}</strong></div>
+                                <div *ngIf="pi.afternoonEngineer.id != 0 && pi.afternoonEngineer.id != selectedEngineer.id" style="background-color: lightgray; margin: 2px; padding: 3px;"><strong>{{ pi.afternoonEngineer.firstName }} {{ pi.afternoonEngineer.lastName }}</strong></div>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div style="width: 100%; display: flex; margin-top: 5px;">
+                    <button class="btn btn-lg btn-primary" style="width: 20%;  margin-left: 2px;" (click)="loadPreviousMonth()">
+                        <strong>&lt;</strong>
+                    </button>
+                    <button class="btn btn-lg btn-primary" style="width: 80%; margin-left:3px; margin-right:3px; text-align: center; font-size: 22px;" (click)="generatePlan()"><strong>Generate plan for {{ data.currentYear }} - {{ data.currentMonthString }}</strong></button>
+                    <button class="btn btn-lg btn-primary" style="width: 20%; margin-right: 2px;" (click)="loadNextMonth()">
+                        <strong>&gt;</strong>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="container">
+        <div class="col-md-12">
+            <login *ngIf="data.isLoginRequired"></login>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,12 @@
+﻿<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h2>{{title}}</h2>
+            <p>This application allow user to plan <strong>Business as Usual (BAU)</strong> work for engineers.</p>
+        </div>
+    </div>
+    <br />
+    <br />
+    <login *ngIf="data.isLoginRequired"></login>
+    <button *ngIf="data.isLoginRequired == false" routerLink="engineers" routerLinkActive="active" class="btn btn-primary">Go to Engineer List</button>
+</div>
