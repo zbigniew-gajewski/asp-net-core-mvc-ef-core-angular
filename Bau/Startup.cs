@@ -1,23 +1,19 @@
-﻿using AutoMapper;
-using Bau.Data;
-using Bau.Data.Entities;
-using Bau.Planning;
-using Bau.Services;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.IdentityModel.Tokens;
-using Newtonsoft.Json;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Bau
+﻿namespace Bau
 {
+    using AutoMapper;
+    using Bau.Data;
+    using Bau.Data.Entities;
+    using Bau.Planning;
+    using Microsoft.AspNetCore.Builder;
+    using Microsoft.AspNetCore.Hosting;
+    using Microsoft.AspNetCore.Identity;
+    using Microsoft.EntityFrameworkCore;
+    using Microsoft.Extensions.Configuration;
+    using Microsoft.Extensions.DependencyInjection;
+    using Microsoft.IdentityModel.Tokens;
+    using Newtonsoft.Json;
+    using System.Text;
+
     public class Startup
     {
         private readonly IConfiguration config;
@@ -64,8 +60,6 @@ namespace Bau
 
             services.AddAutoMapper();
 
-            services.AddTransient<IMailService, NullMailService>();
-
             services.AddTransient<BauSeeder>();
 
             services.AddScoped<IBauRepository, BauRepository>();
@@ -86,8 +80,6 @@ namespace Bau
                     }
                 })
                 .AddJsonOptions(opt => opt.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore);
-
-
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -8,7 +8,6 @@
     using Microsoft.Extensions.Logging;
     using Microsoft.IdentityModel.Tokens;
     using System;
-    using System.Collections.Generic;
     using System.IdentityModel.Tokens.Jwt;
     using System.Linq;
     using System.Security.Claims;
@@ -34,15 +33,6 @@
             this.config = config;
         }
 
-        public IActionResult Login()
-        {
-            if (this.User.Identity.IsAuthenticated)
-            {
-                RedirectToAction("Index", "App");
-            }
-            return View();
-        }
-
         [HttpPost]
         public async Task<IActionResult> Login(LoginViewModel loginViewModel)
         {
@@ -56,7 +46,6 @@
 
                 if (result.Succeeded)
                 {
-
                     if (Request.Query.Keys.Contains("ReturnUrl"))
                     {
                         Redirect(Request.Query["ReturnUrl"].First());
@@ -64,8 +53,7 @@
                     else
                     {
                         RedirectToAction("Shop", "App");
-                    }
-                    
+                    }                    
                 }
             }
 
@@ -80,7 +68,6 @@
             await signInManager.SignOutAsync();
             return RedirectToAction("Index", "App");
         }
-
 
         [HttpPost]
         public async Task<IActionResult> CreateToken([FromBody]LoginViewModel model)

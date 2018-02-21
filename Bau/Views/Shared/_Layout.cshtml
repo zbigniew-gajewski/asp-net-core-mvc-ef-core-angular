@@ -15,18 +15,12 @@
     </environment>
 </head>
 <body>
-    <div class="container" style="min-height: 100%; height: 100%; padding: 0px; background-color: gainsboro">
+    <div class="container" style="min-height: 100%; height: 100%; padding: 0px;">
         @RenderBody()
     </div>
-    @*<footer class="container well" style="vertical-align: bottom; padding: 5px;">
-        <div class="text-center">
-            <strong>Copyright 2018 BAU</strong>
-        </div>
-    </footer>*@
     <environment names="Development">
         <script src="~/lib/jQuery/dist/jquery.js"></script>
         <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
-        @*<script src="~/js/index.js"></script>*@
     </environment>
     <environment names="Staging,Production">
         <script src="//ajax.aspnetcdn.com/ajax/jquery/jquery-3.3.1.min.js"
