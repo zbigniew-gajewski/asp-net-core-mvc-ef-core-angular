@@ -6,28 +6,28 @@ Projects supports:
 - simple JWT authentication
 - simpel notifications from server to clients based on Web Sockets
 
-Client side event support (Type Script) from:_
+Client side event support (Type Script) from:</br>
 https://gist.github.com/JasonKleban/50cee44960c225ac1993c922563aa540
 
-Web Sockets support (translated to C#) from:_
+Web Sockets support (translated to C#) from:</br>
 https://medium.com/@dsincl12/websockets-with-f-and-giraffe-772be829e121
 
 
-### How to build and run ###
-**git clone https://github.com/zbigniew-gajewski/asp-net-core-mvc-ef-core-angular.git**_
-**cd asp-net-core-mvc-ef-core-angular**_
-**cd bau**_
-**build**_
-**dotnet run**_
+## How to build and run ##
+**git clone https://github.com/zbigniew-gajewski/asp-net-core-mvc-ef-core-angular.git**</br>
+**cd asp-net-core-mvc-ef-core-angular**</br>
+**cd bau**</br>
+**build**</br>
+**dotnet run**</br>
 
-Then:_
-**open browser with http://localhost:8888**_
-**login**_
-**'Go to Engineer List'**_
+Then:</br>
+**open browser with http://localhost:8888**</br>
+**login**</br>
+**'Go to Engineer List'**</br>
 
 ### In order to check web sockets: ###
-**repeat above steps**_
-**navigate to the same month (which is empty) on both browsers**_
-**click 'Generate Plan...' button**_
+**repeat above steps**</br>
+**navigate to the same month (which is empty) on both browsers**</br>
+**click 'Generate Plan...' button**</br>
 Both browsers should refresh the plan.
 
