@@ -27,8 +27,10 @@ Then:<br/>
 **'Go to Engineer List'**<br/>
 
 ### In order to check web sockets: ###
+**open another browser**<br/>
 **repeat above steps**<br/>
 **navigate to the same month (which is empty) on both browsers**<br/>
 **click 'Generate Plan...' button**<br/>
-Both browsers should refresh the plan.
+<br/>
+As a result, both browsers should refresh the plan.
 
