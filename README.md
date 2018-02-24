@@ -15,22 +15,22 @@ https://medium.com/@dsincl12/websockets-with-f-and-giraffe-772be829e121
 
 
 ## How to build and run ##
-**git clone https://github.com/zbigniew-gajewski/asp-net-core-mvc-ef-core-angular.git**<br/>
-**cd asp-net-core-mvc-ef-core-angular**<br/>
-**cd bau**<br/>
-**build**<br/>
-**dotnet run**<br/>
+git clone https://github.com/zbigniew-gajewski/asp-net-core-mvc-ef-core-angular.git<br/>
+cd asp-net-core-mvc-ef-core-angular<br/>
+cd bau<br/>
+build<br/>
+dotnet run<br/>
 
-Then:<br/>
-**open browser with http://localhost:8888**<br/>
-**login**<br/>
-**'Go to Engineer List'**<br/>
+#### Then: ####<br/>
+open browser with http://localhost:8888<br/>
+login<br/>
+'Go to Engineer List'<br/>
 
-### In order to check web sockets: ###
-**open another browser**<br/>
-**repeat above steps**<br/>
-**navigate to the same month (which is empty) on both browsers**<br/>
-**click 'Generate Plan...' button**<br/>
+## In order to check web sockets: ##
+open another browser<br/>
+repeat above steps<br/>
+navigate to the same month (which is empty) on both browsers<br/>
+click 'Generate Plan...' button<br/>
 <br/>
 As a result, both browsers should refresh the plan.
 
