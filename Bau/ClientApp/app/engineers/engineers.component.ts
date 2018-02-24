@@ -35,7 +35,15 @@ export class Engineers implements OnInit {
     public generatePlan(): void {
         this.data.generatePlan()
             .subscribe(success => {
-                this.loadCurrentMonth();
+                this.notifyAllClientsToRefreshEngineers();
+            }, error => {
+                console.log(error);
+            });
+    }
+
+    public notifyAllClientsToRefreshEngineers(): void {
+        this.data.notifyAllClientsToRefreshPlanItems()
+            .subscribe(success => {
             }, error => {
                 console.log(error);
             });

@@ -4,6 +4,7 @@
     using Bau.Data;
     using Bau.Data.Entities;
     using Bau.Planning;
+    using Bau.Middleware;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Identity;
@@ -95,6 +96,9 @@
             {
                 app.UseExceptionHandler("/error");
             }
+
+            app.UseWebSockets();
+            app.UseMiddleware<WebSocketMiddleware>();
 
             // app.UseDefaultFiles();
             app.UseStaticFiles();

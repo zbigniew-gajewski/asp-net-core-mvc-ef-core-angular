@@ -14,11 +14,13 @@
 
         public static IWebHost BuildWebHost(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
-            .ConfigureAppConfiguration(SetupConfiguration)
+                .ConfigureAppConfiguration(SetupConfiguration)
                 .UseStartup<Startup>()
                 .Build();
 
-        private static void SetupConfiguration(WebHostBuilderContext ctx, IConfigurationBuilder builder)
+        private static void SetupConfiguration(
+            WebHostBuilderContext ctx, 
+            IConfigurationBuilder builder)
         {
             // Removing the default configuration options
             builder.Sources.Clear();

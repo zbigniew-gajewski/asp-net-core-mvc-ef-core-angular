@@ -3,16 +3,21 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { Engineer } from './engineer';
 import { PlanItem } from './planItem';
+import { LiteEvent } from './liteEvent';
 
 import 'rxjs/add/operator/map';
 
 @Injectable()
 export class DataService {
 
+    private readonly onLogin = new LiteEvent<string>();
+    private readonly onLogout = new LiteEvent<void>();
+
     private token: string = "";
     private tokenExpiration: Date;
 
-    constructor(private http: Http) {
+    constructor(
+        private http: Http) {
 
         var now = new Date(Date.now());
         this.currentYear = now.getFullYear();
@@ -23,6 +28,9 @@ export class DataService {
     public currentYear: number;
     public currentMonth: number;
     public planItems: PlanItem[] = [];
+
+    public get OnLoggedIn() { return this.onLogin.expose(); }
+    public get OnLoggedOut() { return this.onLogout.expose(); }
 
     public get currentMonthString(): string {
         var monthString = this.currentMonth.toString();
@@ -46,25 +54,31 @@ export class DataService {
 
     public generatePlan(): any {
 
-        let headers = new Headers();
-        headers.append("Authorization", "Bearer " + this.token);
-        headers.append("yearString", this.currentYear.toString());
-        headers.append("monthString", this.currentMonth.toString());
-
+        let headers = this.getHeadersWithCurrentYearAndMonth();
         return this.http.get("/api/planning/generate", { headers: headers });
+    }
+
+    public notifyAllClientsToRefreshPlanItems(): any {
+
+        let headers = this.getHeaders();
+        return this.http.get("/api/clientnotificationcommand/notifyallclientstorefreshplanitems", { headers: headers });
+    }
+
+    public refreshPlanItemsCommand() {
+        this.getPlanItems()
+            .subscribe(success => {
+            }, error => {
+                console.log(error);
+            });
     }
 
     public getPlanItems(): any {
 
-        let headers = new Headers();
-        headers.append("Authorization", "Bearer " + this.token);
-        headers.append("yearString", this.currentYear.toString());
-        headers.append("monthString", this.currentMonth.toString());
+        let headers = this.getHeadersWithCurrentYearAndMonth();
 
         return this.http.get("/api/planning", { headers: headers })
             .map((result: Response): PlanItem[] => {
                 this.planItems = result.json();
-                console.log(this.planItems);
                 return this.planItems;
             });
     }
@@ -75,6 +89,7 @@ export class DataService {
                 let tokenInfo = response.json();
                 this.token = tokenInfo.token;
                 this.tokenExpiration = tokenInfo.expiration;
+                this.onLogin.trigger(creds.username);
                 return true;
             });
     }
@@ -84,6 +99,20 @@ export class DataService {
             .map(response => {
                 this.token = "";
                 this.tokenExpiration = new Date();
+                this.onLogout.trigger();
             });
+    }
+
+    private getHeadersWithCurrentYearAndMonth(): Headers {
+        let headers = this.getHeaders();
+        headers.append("yearString", this.currentYear.toString());
+        headers.append("monthString", this.currentMonth.toString());
+        return headers;
+    }
+
+    private getHeaders(): Headers {
+        let headers = new Headers();
+        headers.append("Authorization", "Bearer " + this.token);
+        return headers;
     }
 }

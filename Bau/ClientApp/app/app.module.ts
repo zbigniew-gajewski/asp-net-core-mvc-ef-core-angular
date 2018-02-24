@@ -10,6 +10,7 @@ import { Engineers } from './engineers/engineers.component';
 import { Login } from './account/login.component';
 import { Logout } from './account/logout.component';
 import { DataService } from './shared/dataService';
+import { SocketService } from './shared/socketService';
 
 
 let routes = [
@@ -40,7 +41,8 @@ let routes = [
     ],
 
     providers: [
-        DataService
+        DataService,
+        SocketService
     ],
     bootstrap: [AppComponent]
 })
